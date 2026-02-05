@@ -2,8 +2,8 @@ pipeline{
     agent any
 
     environment{
-        IMAGE_NAME = 'jamiekariuki/nextjs-app'
-        SERVER_IP = 'ubuntu@35.178.105.43'
+        IMAGE_NAME = 'fahmidovi/nextjs-app'
+        SERVER_IP = 'ubuntu@54.234.163.231'
     }
 
     stages{
@@ -20,7 +20,7 @@ pipeline{
                
                  script{
                     echo "Building docker image..."
-                    withCredentials([usernamePassword(credentialsId:'dockerHub', passwordVariable:'PASSWORD', usernameVariable:'USERNAME')]){
+                    withCredentials([usernamePassword(credentialsId:'dockerhub', passwordVariable:'PASSWORD', usernameVariable:'USERNAME')]){
                         sh "docker build -t ${IMAGE_NAME} ."
                         sh '''
                             echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
